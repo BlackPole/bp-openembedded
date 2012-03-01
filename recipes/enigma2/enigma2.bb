@@ -35,8 +35,8 @@ DEFAULTSKIN = "${@base_contains("MACHINE_FEATURES", "hdtv", \
 					d)}"
 
 # Depend on the defaultskin
-DEPENDS += "${DEFAULTSKIN}"
-RDEPENDS_${PN} += "${DEFAULTSKIN}"
+# DEPENDS += "${DEFAULTSKIN}"
+# RDEPENDS_${PN} += "${DEFAULTSKIN}"
 
 # We depend on the font which we use for TXT subtitles (defined in skin_subtitles.xml)
 DEPENDS += "font-valis-enigma"
@@ -86,8 +86,12 @@ PV = "2.7+git${SRCPV}"
 PKGV = "2.7+git${GITPKGV}"
 PR = "r30"
 
-SRC_URI = "git://openpli.git.sourceforge.net/gitroot/openpli/enigma2;protocol=git"
+#SRC_URI = "git://openpli.git.sourceforge.net/gitroot/openpli/enigma2;protocol=git"
 # SRC_URI = "git://${HOME}/pli/enigma2;protocol=file"
+
+
+SRC_URI = "git://blackgit.vuplus-community.net/git/blackpole-core/bp_dvbapp;protocol=http"
+
 
 S = "${WORKDIR}/git"
 
