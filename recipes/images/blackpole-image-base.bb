@@ -48,6 +48,7 @@ OPTIONAL_PACKAGES += " \
 			rsync \
 			ntfs-3g \
 			mpd \
+			parted \
 			"
 
 IMAGE_LINGUAS = ""
