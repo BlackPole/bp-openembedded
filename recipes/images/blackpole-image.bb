@@ -1,5 +1,14 @@
 require blackpole-image-base.bb
 
+BP_DVB_USB_DRIVERS = " \
+				blackpole-dvb-common-modules \
+        			blackpole-dvb-frontends \
+        			blackpole-dvb-usb-modules \
+        			blackpole-dvb-siano \
+        			blackpole-dvb-em28xx \
+				"
+				
+
 WIFI_DRIVERS = " \
 				${@base_contains("MACHINE_FEATURES", "wifiusblegacy", \
 					"rt73 rt3070 rtl8192cu rtl871x", \
@@ -89,7 +98,7 @@ IMAGE_INSTALL += " \
 				libavahi-client \
 				settings-autorestore \
 				${@base_contains("MACHINE_FEATURES", "wifi", "${WIFI_DRIVERS}", "", d)} \
-				${@base_contains("MACHINE_FEATURES", "dvbapi5", "blackpole-dvb-usb-drivers" , "", d)} \
+				${@base_contains("MACHINE_FEATURES", "dvbapi5", "${BP_DVB_USB_DRIVERS}" , "", d)} \
 				"
 
 OPTIONAL_PACKAGES += " \
