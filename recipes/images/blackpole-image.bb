@@ -36,7 +36,7 @@ ENIGMA2_PLUGINS = " \
 				enigma2-plugin-extensions-audiosync \
 				enigma2-plugin-extensions-autobackup \
 				enigma2-plugin-systemplugins-softwaremanager \
-				enigma2-plugin-systemplugins-positionersetup \
+#				enigma2-plugin-systemplugins-positionersetup \
 				enigma2-plugin-extensions-cutlisteditor \
 				enigma2-plugin-systemplugins-satfinder \
 				enigma2-plugin-systemplugins-videotune \
@@ -56,8 +56,11 @@ ENIGMA2_PLUGINS = " \
 				${@base_contains("MACHINE_FEATURES", "frontprocessor", "enigma2-plugin-systemplugins-frontprocessorupgrade" , "", d)} \
 				${@base_contains("MACHINE_FEATURES", "hdtv", "enigma2-plugin-systemplugins-videomode" , "", d)} \
 				${@base_contains("MACHINE_FEATURES", "dvbapi5", "usbtunerhelper" , "", d)} \
-				${@base_contains("MACHINE_FEATURES", "3dtv", "enigma2-plugin-systemplugins-osd3dsetup" , "", d)} \
+#				${@base_contains("MACHINE_FEATURES", "3dtv", "enigma2-plugin-systemplugins-osd3dsetup" , "", d)} \
 				${@base_contains("MACHINE_FEATURES", "wifi", "enigma2-plugin-systemplugins-wirelesslan", "", d)} \
+				enigma2-plugin-extensions-vuplusevent \
+  				enigma2-plugin-systemplugins-ui3dsetup \
+  				enigma2-plugin-systemplugins-uipositionsetup \
 				"
 
 DEPENDS += "enigma2 enigma2-plugins enigma2-pliplugins"
@@ -93,6 +96,7 @@ ENIGMA2_OPTIONAL = " \
 IMAGE_INSTALL += " \
 				enigma2 \
 				${ENIGMA2_PLUGINS} \
+				${ENIGMA2_MACHINE_PLUGINS} \
 				aio-grab \
 				tuxbox-common \
 				libavahi-client \

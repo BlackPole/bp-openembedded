@@ -3,7 +3,7 @@ RDEPENDS = "enigma2"
 DEPENDS = "python-native"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-SRCREV = "0c5ce99c4f07836ab35fb0675a63c8cd4341a72c"
+SRCREV = "a3c6e8d7b0d778caffecdc944995d50af578d622"
 inherit gitpkgv
  
 PV = "experimental-git${SRCPV}"
@@ -13,7 +13,7 @@ BRANCH = "vuplus_experimental"
 
 
 SRC_URI = "git://code.vuplus.com/git/dvbapp.git;protocol=http;branch=${BRANCH};tag=${SRCREV} \
-	file://vuplus_enigma2_packages.patch;striplevel=1 \
+#	file://vuplus_enigma2_packages.patch;striplevel=1 \
 "
 
 S = "${WORKDIR}/git"
@@ -25,6 +25,10 @@ do_install() {
 	install -d  ${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/FirmwareUpgrade
 	install -d  ${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/RemoteControlCode
 	install -d  ${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/LEDBrightnessSetup
+	install -d  ${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/Fancontrol
+	install -d  ${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/UI3DSetup
+	install -d  ${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/UIPositionSetup
+	install -d  ${D}/usr/lib/enigma2/python/Plugins/Extensions/VuplusEvent
 
 	install -m 0644 ${S}/lib/python/Plugins/SystemPlugins/ManualFancontrol/*.py \
 	${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/ManualFancontrol
@@ -44,7 +48,20 @@ do_install() {
 
 	install -m 0644 ${S}/lib/python/Plugins/SystemPlugins/LEDBrightnessSetup/*.py \
 	${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/LEDBrightnessSetup
+
+	install -m 0644 ${S}/lib/python/Plugins/SystemPlugins/Fancontrol/*.py \
+	${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/Fancontrol
+
+	install -m 0644 ${S}/lib/python/Plugins/SystemPlugins/UI3DSetup/*.py \
+	${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/UI3DSetup
 	
+	install -m 0644 ${S}/lib/python/Plugins/SystemPlugins/UIPositionSetup/*.py \
+	${D}/usr/lib/enigma2/python/Plugins/SystemPlugins/UIPositionSetup
+
+	install -m 0644 ${S}/lib/python/Plugins/Extensions/VuplusEvent/*.py \
+	${S}/lib/python/Plugins/Extensions/VuplusEvent/*.so \
+	${D}/usr/lib/enigma2/python/Plugins/Extensions/VuplusEvent
+
 	python -O -m compileall ${D}/usr/lib/enigma2/python/Plugins/
 }
 
@@ -54,6 +71,10 @@ FILES_enigma2-plugin-systemplugins-blindscan = "/usr/lib/enigma2/python/Plugins/
 FILES_enigma2-plugin-systemplugins-firmwareupgrade = "/usr/lib/enigma2/python/Plugins/SystemPlugins/FirmwareUpgrade"
 FILES_enigma2-plugin-systemplugins-remotecontrolcode = "/usr/lib/enigma2/python/Plugins/SystemPlugins/RemoteControlCode"
 FILES_enigma2-plugin-systemplugins-ledbrightnesssetup = "/usr/lib/enigma2/python/Plugins/SystemPlugins/LEDBrightnessSetup"
+FILES_enigma2-plugin-systemplugins-fancontrol = "/usr/lib/enigma2/python/Plugins/SystemPlugins/Fancontrol"
+FILES_enigma2-plugin-systemplugins-ui3dsetup = "/usr/lib/enigma2/python/Plugins/SystemPlugins/UI3DSetup"
+FILES_enigma2-plugin-systemplugins-uipositionsetup = "/usr/lib/enigma2/python/Plugins/SystemPlugins/UIPositionSetup"
+FILES_enigma2-plugin-extensions-vuplusevent = "/usr/lib/enigma2/python/Plugins//Extensions/VuplusEvent"
 
 PACKAGES = "\
 	enigma2-plugin-systemplugins-manualfancontrol \
@@ -62,6 +83,10 @@ PACKAGES = "\
 	enigma2-plugin-systemplugins-firmwareupgrade \
 	enigma2-plugin-systemplugins-remotecontrolcode \
 	enigma2-plugin-systemplugins-ledbrightnesssetup \
+	enigma2-plugin-systemplugins-fancontrol \
+	enigma2-plugin-systemplugins-ui3dsetup \
+	enigma2-plugin-systemplugins-uipositionsetup \
+	enigma2-plugin-extensions-vuplusevent \
 	"
 
 PROVIDES="${PACKAGES}"
