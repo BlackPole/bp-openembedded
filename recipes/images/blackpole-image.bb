@@ -6,6 +6,7 @@ BP_DVB_USB_DRIVERS = " \
         			blackpole-dvb-usb-modules \
         			blackpole-dvb-siano \
         			blackpole-dvb-em28xx \
+				blackpole-dvb-firmwares \
 				"
 				
 
