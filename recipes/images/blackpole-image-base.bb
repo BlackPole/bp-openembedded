@@ -25,6 +25,7 @@ IMAGE_INSTALL = " \
 				openvpn \
 				blackpole-base \
 				blackholesocker \
+				blackpole-feed-configs \
 				"
 
 OPTIONAL_PACKAGES ?= ""
