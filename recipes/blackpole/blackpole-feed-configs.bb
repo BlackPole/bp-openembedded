@@ -2,7 +2,7 @@ DESCRIPTION = "Configuration files for online package repositories aka feeds"
 PR = "r7"
 
 DISTRO_FEED_PREFIX ?= "official"
-DISTRO_FEED_URI ?= "http://feeds.vuplus-community.net/"
+DISTRO_FEED_URI ?= "http://feeds.vuplus-community.net"
 
 do_compile() {
     mkdir -p ${S}/${sysconfdir}/opkg
