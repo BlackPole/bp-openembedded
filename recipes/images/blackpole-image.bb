@@ -37,7 +37,7 @@ ENIGMA2_PLUGINS = " \
 				enigma2-plugin-extensions-audiosync \
 				enigma2-plugin-extensions-autobackup \
 				enigma2-plugin-systemplugins-softwaremanager \
-#				enigma2-plugin-systemplugins-positionersetup \
+				enigma2-plugin-systemplugins-positionersetup \
 				enigma2-plugin-extensions-cutlisteditor \
 				enigma2-plugin-systemplugins-satfinder \
 				enigma2-plugin-systemplugins-videotune \
