@@ -86,7 +86,7 @@ ENIGMA2_OPTIONAL = " \
 					" , "", d)} \
 				channelsettings-enigma2-meta \
 				picons-enigma2-meta \
-				softcams-enigma2-meta \
+#				softcams-enigma2-meta \
 				dvbsnoop \
 				mtd-utils \
 				dvdfs \
