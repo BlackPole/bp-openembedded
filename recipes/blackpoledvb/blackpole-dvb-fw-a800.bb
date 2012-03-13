@@ -1,11 +1,9 @@
+require blackpole-dvb-fw-git.inc
+
 DESCRIPTION = "DVB firmwares"
 
-SRC_URI = "http://linuxtv.org/downloads/firmware/dvb-usb-avertv-a800-02.fw"
-
-S = "${WORKDIR}"
-
 PV = "1.0"
-PR = "r0"
+PR = "r1"
 
 ALLOW_EMPTY_${PN} = "1"
 

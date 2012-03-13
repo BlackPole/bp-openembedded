@@ -1,14 +1,9 @@
+require blackpole-dvb-fw-git.inc
+
 DESCRIPTION = "DVB firmwares"
 
-SRC_URI = " \
-	http://steventoth.net/linux/nova-t-usb2/dvb-usb-nova-t-usb2-01.fw \
-	http://steventoth.net/linux/nova-t-usb2/dvb-usb-nova-t-usb2-02.fw \
-	"
-
-S = "${WORKDIR}"
-
 PV = "1.0"
-PR = "r0"
+PR = "r1"
 
 ALLOW_EMPTY_${PN} = "1"
 
