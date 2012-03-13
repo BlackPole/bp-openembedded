@@ -67,10 +67,8 @@ ENIGMA2_PLUGINS = " \
 DEPENDS += "enigma2 enigma2-plugins enigma2-pliplugins"
 
 ENIGMA2_OPTIONAL = " \
-				enigma2-skins \
 				enigma2-plugins \
 				enigma2-pliplugins \
-#				task-openplugins \
 				enigma2-plugin-extensions-tuxcom \
 				enigma2-plugin-extensions-tuxterm \
 				${@base_contains("MACHINE_FEATURES", "usbhost", "enigma2-plugin-drivers-usbserial" , "", d)} \
@@ -79,14 +77,8 @@ ENIGMA2_OPTIONAL = " \
 				enigma2-plugin-extensions-xmltvimport \
 				enigma2-plugin-extensions-ambx \
 				enigma2-plugin-extensions-project-valerie \
-				${@base_contains("MACHINE_FEATURES", "hdtv", \
-					" \
-					enigma2-plugin-skins-magic-hd \
-					enigma2-plugin-skins-pli-hd \
-					" , "", d)} \
 				channelsettings-enigma2-meta \
 				picons-enigma2-meta \
-#				softcams-enigma2-meta \
 				dvbsnoop \
 				mtd-utils \
 				dvdfs \
@@ -110,6 +102,6 @@ OPTIONAL_PACKAGES += " \
 			${ENIGMA2_OPTIONAL} \
 			"
 
-export IMAGE_BASENAME = "blackopen"
+export IMAGE_BASENAME = "blackpole"
 
 
