@@ -1,0 +1,6 @@
+#!/bin/sh
+cd /dev
+for d in hd?
+do
+	/usr/bin/enable-dma-mode.sh $d
+done
