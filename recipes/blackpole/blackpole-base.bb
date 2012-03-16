@@ -2,7 +2,7 @@ DESCRIPTION = "Black Pole extra files"
 LICENSE = "GPL2"
 MAINTAINER = "Meo <lupomeo@gmail.com>"
 
-SRC_URI = "file://Ncam_Ci.sh file://StartBhCam file://Delete_all_Crashlogs.sh file://Ifconfig.sh file://Netstat.sh Uptime.sh"
+SRC_URI = "file://Ncam_Ci.sh file://StartBhCam file://Delete_all_Crashlogs.sh file://Ifconfig.sh file://Netstat.sh file://Uptime.sh"
 
 PR = "r0"
 
