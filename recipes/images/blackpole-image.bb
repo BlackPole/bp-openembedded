@@ -84,6 +84,7 @@ ENIGMA2_OPTIONAL = " \
 				dvdfs \
 				minidlna \
 				nano \
+				pcsc-lite \
 				"
 
 IMAGE_INSTALL += " \
