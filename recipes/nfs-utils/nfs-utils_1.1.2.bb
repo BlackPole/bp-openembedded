@@ -12,7 +12,7 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/nfs/nfs-utils-${PV}.tar.gz \
 	file://nfs-utils-uclibc-compile.patch \
 	file://nfs-utils-S_ISREG-missing-include.patch \
 	file://mtabsymlinkcheck.patch \
-	file://nfsserver \
+	file://nfsserver file://exports \
    "
 
 S = "${WORKDIR}/nfs-utils-${PV}/"
@@ -43,6 +43,9 @@ INHIBIT_AUTO_STAGE = "1"
 do_install_append() {
 	install -d ${D}${sysconfdir}/init.d
 	install -m 0755 ${WORKDIR}/nfsserver ${D}${sysconfdir}/init.d/nfsserver
+
+	install -d ${D}/etc
+	install -m 0644 ${WORKDIR}/exports ${D}/etc/exports
 
 	rm ${D}${sbindir}/rpcdebug
 }
