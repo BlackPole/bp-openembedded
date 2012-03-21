@@ -36,9 +36,11 @@ RDEPENDS_${PN} = " \
         ${DVBPROVIDER}-module-dvb-usb-umt-010 \
         ${DVBPROVIDER}-module-dvb-usb-vp702x \
         ${DVBPROVIDER}-module-dvb-usb-vp7045 \
+	${DVBPROVIDER}-module-dvb-usb-af9035 \
+	${DVBPROVIDER}-module-dvb-usb-a867 \
         "
 
-PV = "1.0"
+PV = "1.1"
 PR = "r0"
 
 ALLOW_EMPTY_${PN} = "1"
