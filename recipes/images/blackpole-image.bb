@@ -51,6 +51,8 @@ ENIGMA2_PLUGINS = " \
 				enigma2-plugin-systemplugins-networkbrowser \
 				enigma2-plugin-systemplugins-fastscan \
 #				enigma2-plugin-systemplugins-osdpositionsetup \
+				enigma2-plugin-extensions-dyndns \
+				enigma2-plugin-extensions-dvdplayer \
 				enigma2-plugin-systemplugins-hdmicec \
 				${@base_contains("MACHINE_FEATURES", "nohotplug", "", "enigma2-plugin-systemplugins-hotplug", d)} \
 				${@base_contains("MACHINE_FEATURES", "dvb-c", "enigma2-plugin-systemplugins-cablescan" , "", d)} \

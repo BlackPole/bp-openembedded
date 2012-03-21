@@ -1,141 +1,149 @@
 #!/bin/sh
 #
+# Startup script for nfs-utils
+#
+#
+# The environment variable NFS_SERVERS may be set in /etc/default/nfsd
+# Other control variables may be overridden here too
+test -r /etc/default/nfsd && . /etc/default/nfsd
+#
+# Location of executables:
+test -x "$NFS_MOUNTD" || NFS_MOUNTD=/usr/sbin/rpc.mountd
+test -x "$NFS_NFSD" || NFS_NFSD=/usr/sbin/rpc.nfsd
+test -x "$NFS_STATD" || NFS_STATD=/usr/sbin/rpc.statd
+#
+# The user mode program must also exist (it just starts the kernel
+# threads using the kernel module code).
+test -x "$NFS_MOUNTD" || exit 0
+test -x "$NFS_NFSD" || exit 0
+#
+# Default is 8 threads, value is settable between 1 and the truely
+# ridiculous 99
+test "$NFS_SERVERS" -gt 0 && test "$NFS_SERVERS" -lt 100 || NFS_SERVERS=8
+#
+# The default state directory is /var/lib/nfs
+test -n "$NFS_STATEDIR" || NFS_STATEDIR=/var/lib/nfs
+#
+#----------------------------------------------------------------------
+# Startup and shutdown functions.
+#  Actual startup/shutdown is at the end of this file.
+#directories
+create_directories(){
+	echo -n 'creating NFS state directory: '
+	mkdir -p "$NFS_STATEDIR"
+	(	cd "$NFS_STATEDIR"
+		umask 077
+		mkdir -p sm sm.bak
+		test -w sm/state || {
+			rm -f sm/state
+			:>sm/state
+		}
+		umask 022
+		for file in xtab etab smtab rmtab
+		do
+			test -w "$file" || {
+				rm -f "$file"
+				:>"$file"
+			}
+		done
+	)
+	echo done
+}
+#mountd
+start_mountd(){
+	echo -n 'starting mountd: '
+	start-stop-daemon --start --exec "$NFS_MOUNTD" -- "-f /etc/exports $@"
+	echo done
+}
+stop_mountd(){
+	echo -n 'stopping mountd: '
+	start-stop-daemon --stop --quiet --exec "$NFS_MOUNTD"
+	echo done
+}
+#
+#nfsd
+start_nfsd(){
+	echo -n "starting $1 nfsd kernel threads: "
+	start-stop-daemon --start --exec "$NFS_NFSD" -- "$@"
+	echo done
+}
+delay_nfsd(){
+	for delay in 0 1 2 3 4 5 6 7 8 9 
+	do
+		if pidof nfsd >/dev/null
+		then
+			echo -n .
+			sleep 1
+		else
+			return 0
+		fi
+	done
+	return 1
+}
+stop_nfsd(){
+	# WARNING: this kills any process with the executable
+	# name 'nfsd'.
+	echo -n 'stopping nfsd: '
+	start-stop-daemon --stop --quiet --signal 1 --name nfsd
+	if delay_nfsd || {
+		echo failed
+		echo ' using signal 9: '
+		start-stop-daemon --stop --quiet --signal 9 --name nfsd
+		delay_nfsd
+	}
+	then
+		echo done
+		# This will remove, recursively, dependencies
+		echo -n 'removing nfsd kernel module: '
+		if modprobe -r nfsd
+		then
+			echo done
+		else
+			echo failed
+		fi
+	else
+		echo failed
+	fi
+}
 
-set -e
-
-LIBDIR=/lib/modules/`uname -r`
-if [ ! -d $LIBDIR ]; then
-   LIBDIR=/lib/modules/`ls /lib/modules | tail -n 1`
-fi
-
-# Read config
-NFSSERVER_ON=1
-NFS_CL_IP=192.168.0.5
-NFSNETMASKE=255.255.0.0
-DIRECTORY=/media/hdd
-MOUNTD_PORT_ON=0
-MOUNTD_PORT=2049
-OPTIONS=rw,no_root_squash,async
-# end
-
-DESC="NFS kernel daemon"
-LIB=/lib/modules/2.6.9/extra
-RPCNFSDCOUNT=3
-
-
-PORTMAP_BIN=/sbin/portmap
-NFSD_BIN=/usr/sbin/rpc.nfsd
-MOUNTD_BIN=/usr/sbin/rpc.mountd
-EXPORTFS_BIN=/usr/sbin/exportfs
-
-
-
-# Exit if required binaries are missing.
-[ -x $NFSD_BIN ] || exit 0
-[ -x $MOUNTD_BIN ] || exit 0
-[ -x $EXPORTFS_BIN ] || exit 0
-[ -x $PORTMAP_BIN ] || exit 0
-
-if [ $NFSSERVER_ON -ne 0 ]; then
-	if [ ! -d /var/lib ] ; then mkdir /var/lib; fi
-	rm -R /var/lib/nfs 2> /dev/null || /bin/true
-	ln -sf /tmp /var/lib/nfs
-	touch /var/lib/nfs/rmtab
-fi
-
-# See how we were called.
+#statd
+start_statd(){
+	echo -n "starting statd: "
+	start-stop-daemon --start --exec "$NFS_STATD"
+	echo done
+}
+stop_statd(){
+	# WARNING: this kills any process with the executable
+	# name 'statd'.
+	echo -n 'stopping statd: '
+	start-stop-daemon --stop --quiet --signal 1 --name statd
+	echo done
+}
+#----------------------------------------------------------------------
+#
+# supported options:
+#  start
+#  stop
+#  reload: reloads the exports file
+#  restart: stops and starts mountd
+#FIXME: need to create the /var/lib/nfs/... directories
 case "$1" in
-	start)
-		if [ $NFSSERVER_ON -ne 0 ]; then
-#portmap
-			echo -n "Starting portmap daemon:"
-			echo -n " portmap"
-			start-stop-daemon --start --quiet --exec $PORTMAP_BIN
-			echo "."
-
-			if [ -f /var/run/portmap.upgrade-state ]; then
-				echo -n "Restoring old RPC service information..."
-				sleep 1 # needs a short pause or pmap_set won't work. :(
-				pmap_set </var/run/portmap.upgrade-state
-				rm -f /var/run/portmap.upgrade-state
-				echo "done."
-			fi
-			
-			sleep 1
-#NFSSERVER
-			$EXPORTFS_BIN -i -o $OPTIONS :/$DIRECTORY
-			if ! grep -qs exportfs /proc/modules ; then
-				insmod $LIBDIR/kernel/fs/exportfs/exportfs.ko
-			fi
-			if ! grep -qs nfsd /proc/modules ; then
-				insmod $LIBDIR/kernel/fs/nfsd/nfsd.ko
-			fi
-	
-			if ! grep -qs /proc/fs/nfs /proc/mounts ; then
-				mount -t nfsd nfsd /proc/fs/nfsd
-			fi	
-	
-			echo "Exporting directories for $DESC..."
-			echo "done."
-			echo "Starting $DESC:"
-			echo " nfsd"
-			start-stop-daemon --start --quiet --exec $NFSD_BIN -- $RPCNFSDCOUNT
-			echo " mountd"
-			
-			if [ $MOUNTD_PORT_ON -ne 0 ]; then
-				start-stop-daemon --start --quiet --exec $MOUNTD_BIN -p $MOUNTD_PORT
-			else
-				start-stop-daemon --start --quiet --exec $MOUNTD_BIN
-			fi
-
-			echo "."
-		fi
-	;;
-	stop)
-#PORTMAP
-		echo -n "Stopping portmap daemon:"
-		echo -n " portmap"
-		start-stop-daemon --stop --quiet --exec $PORTMAP_BIN
-        	echo "."
-		sleep 1
-#NFSSERVER
-		echo "Stopping $DESC: mountd"
-		start-stop-daemon --stop --quiet --name rpc.mountd --user 0
-		sleep 1
-		echo " nfsd"
-		start-stop-daemon --stop --quiet --name rpc.nfsd --user 0 --signal 2
-		echo "."
-
-		echo "Unexporting directories for $DESC..."
-		$EXPORTFS_BIN -au
-		umount /proc/fs/nfsd
-		rm -rf /tmp/etab
-		rm -rf /tmp/rmtab
-		rm -rf /tmp/xtab
-		echo "done."
-	;;
-	reload | force-reload)
-		echo "Re-exporting directories for $DESC..."
-		$EXPORTFS_BIN -r
-		echo "done."
-	;;
-	restart)
-		pmap_dump >/var/run/portmap.state
-		$0 stop
-		sleep 1
-        	$0 start
-		if [ ! -f /var/run/portmap.upgrade-state ]; then
-			sleep 1
-			pmap_set </var/run/portmap.state
-		fi
-		rm -f /var/run/portmap.state
-	;;
-  	*)
-		$0 start
-		exit 0
-#		echo "Usage: nfs_server_script.sh {start|stop|reload|force-reload|restart}"
-#		exit 1
-	;;
+start)	create_directories
+	start_nfsd "$NFS_SERVERS"
+	start_mountd
+	start_statd
+	test -r /etc/exports && exportfs -a;;
+stop)	exportfs -ua
+	stop_statd
+	stop_mountd
+	stop_nfsd;;
+reload)	test -r /etc/exports && exportfs -r;;
+restart)exportfs -ua
+	stop_mountd
+	stop_statd
+	# restart does not restart the kernel threads,
+	# only the user mode processes
+	start_mountd
+	start_statd
+	test -r /etc/exports && exportfs -a;;
 esac
-
-exit 0

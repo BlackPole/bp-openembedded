@@ -26,6 +26,7 @@ IMAGE_INSTALL = " \
 				blackpole-base \
 				blackholesocker \
 				blackpole-feed-configs \
+				libcrypto-compat \
 				"
 
 OPTIONAL_PACKAGES ?= ""

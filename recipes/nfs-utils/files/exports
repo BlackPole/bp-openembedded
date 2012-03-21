@@ -1,0 +1,1 @@
+/media/hdd *(rw,sync,no_wdelay,no_subtree_check)
