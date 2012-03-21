@@ -100,8 +100,10 @@ RDEPENDS_${PN} = " \
                 ${DVBPROVIDER}-module-au8522 \
                 ${DVBPROVIDER}-module-atbm8830 \
                 ${DVBPROVIDER}-module-af9013 \
+		${DVBPROVIDER}-module-af9033 \
+		${DVBPROVIDER}-module-tua9001 \
 		"
-PV = "1.0"
+PV = "1.1"
 PR = "r0"
 
 ALLOW_EMPTY_${PN} = "1"
