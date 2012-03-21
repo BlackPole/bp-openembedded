@@ -10,6 +10,9 @@ DEPENDS = "mtd-minimal-nand-utils"
 RDEPENDS_kernel-image = "mtd-minimal-nand-utils"
 
 SRC_URI += "http://archive.vuplus.com/download/kernel/linux-${KV}_${SRCREV}.tar.bz2 \
+	file://vuplus-kernel-makefiles.patch \
+	file://dvb-usb-a867.patch \
+	file://dvb-usb-af9035.patch \
 	file://fix_cpu_proc.patch;striplevel=1 \
 	file://iosched-slice_idle-1.patch \
         file://${MACHINE}_defconfig \
