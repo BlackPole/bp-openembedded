@@ -19,9 +19,6 @@ do_install() {
 	mkdir -p ${D}/usr/camscript
 	mkdir -p ${D}/usr/script
 
-	install -d ${D}/usr/lib	
-	ln -sf  libssl.so.0.9.8 ${D}/usr/lib/libssl.so.0.9.7
-
 	install -d ${D}/etc
 	install -m 0644 ${WORKDIR}/bpmachine ${D}/etc/bpmachine
 	install -m 0644 ${WORKDIR}/bpversion ${D}/etc/bpversion
