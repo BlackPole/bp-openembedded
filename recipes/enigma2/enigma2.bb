@@ -91,7 +91,13 @@ PR = "r31"
 # SRC_URI = "git://${HOME}/pli/enigma2;protocol=file"
 
 
-SRC_URI = "git://blackgit.vuplus-community.net/git/blackpole-core/bp_dvbapp;protocol=http"
+SRC_URI = "git://blackgit.vuplus-community.net/git/blackpole-core/bp_dvbapp;protocol=http \
+	   file://enigma2_vuplus_vfd_mode.patch \
+	   "
+
+SRC_URI_append_vuduo = " file://enigma2_vuplus_textvfd.patch"
+SRC_URI_append_vuuno = " file://enigma2_vuplus_textvfd.patch"
+SRC_URI_append_vusolo = " file://enigma2_vuplus_misc.patch"
 
 SRC_URI_append_vuultimo = " \
            file://analog.ttf \
@@ -122,8 +128,9 @@ sbindir = "/usr/sbin"
 
 EXTRA_OECONF = "\
 	--with-libsdl=no --with-boxtype=${MACHINE} \
-	${@base_contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
-	${@base_contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
+	${@base_contains("MACHINE_FEATURES", "display-text-vfd", "--with-display-text-vfd" , "", d)} \
+	${@base_contains("MACHINE_FEATURES", "display-graphic-vfd", "--with-display-graphic-vfd" , "", d)} \
+	${@base_contains("MACHINE_FEATURES", "right-half-vfd-skin", "--with-set-right-half-vfd-skin" , "", d)} \
 	BUILD_SYS=${BUILD_SYS} \
 	HOST_SYS=${HOST_SYS} \
 	STAGING_INCDIR=${STAGING_INCDIR} \

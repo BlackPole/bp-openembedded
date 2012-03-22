@@ -1,0 +1,124 @@
+diff --git a/configure.ac b/configure.ac
+index 27beb1e..8e007e1 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -46,6 +46,28 @@ AC_CHECK_LIB([xmlccwrap], [exit], [LIBXMLCCWRAP_LIBS="-lxmlccwrap"], [AC_MSG_ERR
+ AC_SUBST(LIBXMLCCWRAP_LIBS)
+ AC_LANG_POP
+ 
++
++AC_ARG_WITH(display-text-vfd,
++        AC_HELP_STRING([--with-display-text-vfd], [use text based vfd, yes or no]),
++        [[withtextvfd=$withval]],
++        [[withtextvfd=no]]
++)
++if test x"$withtextvfd" != xno ; then
++        AC_DEFINE(DISPLAY_TEXTVFD, 1,[Define when using an text based vfd device])
++fi
++AM_CONDITIONAL(DISPLAY_TEXTVFD, test x"$withtextvfd" != xno)
++
++AC_ARG_WITH(display-graphic-vfd,
++        AC_HELP_STRING([--with-display-graphic-vfd], [use graphic based vfd, yes or no]),
++        [[withgraphicvfd=$withval]],
++        [[withgraphicvfd=no]]
++)
++if test x"$withgraphicvfd" != xno ; then
++        AC_DEFINE(DISPLAY_GRAPHICVFD, 1,[Define when using an graphic based vfd device])
++fi
++AM_CONDITIONAL(DISPLAY_GRAPHICVFD, test x"$withgraphicvfd != xno")
++
++
+ AC_ARG_WITH(libsdl,
+ 	AS_HELP_STRING([--with-libsdl],[use libsdl, yes or no]),
+ 	[with_libsdl=$withval],[with_libsdl=no])
+diff --git a/lib/gdi/glcddc.cpp b/lib/gdi/glcddc.cpp
+index 8ac8cd3..74f6afd 100755
+--- a/lib/gdi/glcddc.cpp
++++ b/lib/gdi/glcddc.cpp
+@@ -34,13 +34,23 @@ void gLCDDC::exec(const gOpcode *o)
+ {
+ 	switch (o->opcode)
+ 	{
++#if defined(DISPLAY_TEXTVFD)
++	case gOpcode::renderText:
++		if (o->parm.renderText->text)
++		{
++			lcd->updates(gDC::m_current_offset, o->parm.renderText->text);
++			free(o->parm.renderText->text);
++			delete o->parm.renderText;
++		}
++		break;
++#endif /*defined(DISPLAY_TEXTVFD)*/
+ 	case gOpcode::flush:
++#if defined(DISPLAY_GRAPHICVFD) && !defined(DISPLAY_TEXTVFD)
+ //		if (update)
+-#ifndef BUILD_VUPLUS /* ikseong  */
+ 			lcd->update();
+ #else
+-			;
+-#endif
++		;
++#endif /*defined(DISPLAY_GRAPHICVFD) && !defined(DISPLAY_TEXTVFD)*/
+ 	default:
+ 		gDC::exec(o);
+ 		break;
+diff --git a/lib/gdi/lcd.cpp b/lib/gdi/lcd.cpp
+index a5ac351..74bc3e0 100755
+--- a/lib/gdi/lcd.cpp
++++ b/lib/gdi/lcd.cpp
+@@ -183,9 +183,7 @@ eDBoxLCD *eDBoxLCD::getInstance()
+ 
+ void eDBoxLCD::update()
+ {
+-#ifdef BUILD_VUPLUS /* ikseong  */
+-	return ;
+-#endif
++#if defined(DISPLAY_GRAPHICVFD) && !defined(DISPLAY_TEXTVFD)
+ 	if (lcdfd >= 0)
+ 	{
+ 		if (!is_oled || is_oled == 2)
+@@ -227,5 +225,20 @@ void eDBoxLCD::update()
+ 			write(lcdfd, raw, 64*64);
+ 		}
+ 	}
++#endif /*defined(DISPLAY_GRAPHICVFD) && !defined(DISPLAY_TEXTVFD)*/
+ }
+ 
++#if defined(DISPLAY_TEXTVFD)
++void eDBoxLCD::updates(ePoint start,char *text)
++{
++	if((lcdfd >= 0) && (start.y() < 5))
++	{
++		int i = 0, text_len = strlen(text);
++		for(; i<text_len ; i++)
++		{
++	                if(text[i]==0x0a) text[i] = 0x20;
++	        }
++		write(lcdfd, text, text_len);
++	}
++}
++#endif /*defined(DISPLAY_TEXTVFD)*/
+diff --git a/lib/gdi/lcd.h b/lib/gdi/lcd.h
+index e7b4c2c..80a56f2 100644
+--- a/lib/gdi/lcd.h
++++ b/lib/gdi/lcd.h
+@@ -36,6 +36,9 @@ public:
+ 	int stride() { return _stride; }
+ 	eSize size() { return res; }
+ 	virtual void update()=0;
++#if defined(DISPLAY_TEXTVFD)
++	virtual void updates(ePoint start,char *text) = 0;
++#endif /*defined(DISPLAY_TEXTVFD)*/
+ #endif
+ };
+ 
+@@ -59,6 +62,9 @@ public:
+ 	void setInverted( unsigned char );
+ 	bool isOled() const { return !!is_oled; }
+ 	void update();
++#if defined(DISPLAY_TEXTVFD)
++	void updates(ePoint start,char *text);
++#endif /*defined(DISPLAY_TEXTVFD)*/
+ };
+ 
+ #endif

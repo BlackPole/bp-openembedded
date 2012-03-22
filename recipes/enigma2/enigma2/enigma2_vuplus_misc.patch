@@ -1,0 +1,12 @@
+diff --git a/lib/base/filepush.cpp b/lib/base/filepush.cpp
+index 91f24ba..13dac01 100644
+--- a/lib/base/filepush.cpp
++++ b/lib/base/filepush.cpp
+@@ -263,6 +263,7 @@ void eFilePushThread::stop()
+ 
+ 	m_stop = 1;
+ 
++	usleep(100000); //Fix problem of blocking I/O read 
+ 	eDebug("stopping thread."); /* just do it ONCE. it won't help to do this more than once. */
+ 	sendSignal(SIGUSR1);
+ 	kill(0);
