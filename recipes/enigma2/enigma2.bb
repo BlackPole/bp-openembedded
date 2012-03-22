@@ -93,6 +93,11 @@ PR = "r31"
 
 SRC_URI = "git://blackgit.vuplus-community.net/git/blackpole-core/bp_dvbapp;protocol=http"
 
+SRC_URI_append_vuultimo = " \
+           file://analog.ttf \
+           file://skin_user.xml \
+           file://vfd_icons \
+"
 
 S = "${WORKDIR}/git"
 
@@ -171,12 +176,11 @@ do_install_append() {
 	find ${D}/usr/lib/enigma2/python/ -name '*.pyc' -exec rm {} \;
 }
 
-# On the 7025, put the enigma files into a zip archive
-do_install_append_dm7025() {
-	install -d ${D}/usr/share/keymaps
-	find ${D}/usr/lib/enigma2/python/ -name '*.pyc' -exec rm {} \;
-	cd ${D}/usr/lib/enigma2/python/
-	zip -m -r -9 enigma.zip *.pyo Screens/*.pyo Tools/*.pyo Components/*.pyo Components/*/*.pyo
+do_install_append_vuultimo() {
+        install -m 0755 ${WORKDIR}/analog.ttf ${D}/usr/share/fonts/
+        install -m 0755 ${WORKDIR}/skin_user.xml ${D}/usr/share/enigma2/defaults/
+        install -d ${D}/usr/share/enigma2/vfd_icons/
+        install -m 0755 ${WORKDIR}/vfd_icons/*.png ${D}/usr/share/enigma2/vfd_icons/
 }
 
 python populate_packages_prepend () {
