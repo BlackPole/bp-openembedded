@@ -95,8 +95,8 @@ SRC_URI = "git://blackgit.vuplus-community.net/git/blackpole-core/bp_dvbapp;prot
 	   file://enigma2_vuplus_vfd_mode.patch \
 	   "
 
-SRC_URI_append_vuduo = " file://enigma2_vuplus_textvfd.patch"
-SRC_URI_append_vuuno = " file://enigma2_vuplus_textvfd.patch"
+#SRC_URI_append_vuduo = " file://enigma2_vuplus_textvfd.patch"
+#SRC_URI_append_vuuno = " file://enigma2_vuplus_textvfd.patch"
 SRC_URI_append_vusolo = " file://enigma2_vuplus_misc.patch"
 
 SRC_URI_append_vuultimo = " \
