@@ -96,6 +96,7 @@ SRC_URI = "git://blackgit.vuplus-community.net/git/blackpole-core/bp_dvbapp;prot
 SRC_URI_append_vuultimo = " \
            file://analog.ttf \
            file://skin_user.xml \
+	   file://picon_lcd_default.png \
            file://vfd_icons \
 "
 
@@ -181,6 +182,7 @@ do_install_append() {
 do_install_append_vuultimo() {
         install -m 0755 ${WORKDIR}/analog.ttf ${D}/usr/share/fonts/
         install -m 0755 ${WORKDIR}/skin_user.xml ${D}/usr/share/enigma2/defaults/
+	install -m 0755 ${WORKDIR}/picon_lcd_default.png ${D}/usr/share/enigma2/skin_default/
         install -d ${D}/usr/share/enigma2/vfd_icons/
         install -m 0755 ${WORKDIR}/vfd_icons/*.png ${D}/usr/share/enigma2/vfd_icons/
 }
