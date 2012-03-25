@@ -90,25 +90,25 @@ ENIGMA2_OPTIONAL = " \
 				"
 
 ENIGMA2_OPEN_PLUGINS = " \
-				enigma2-plugin-extensions-antilogo.bb
-				enigma2-plugin-extensions-bhtunerserver.bb
-				enigma2-plugin-extensions-bitrate.bb
-				enigma2-plugin-extensions-buienradar.bb
-				enigma2-plugin-extensions-changerootpassword.bb
-				enigma2-plugin-extensions-foreca.bb
-				enigma2-plugin-extensions-meteoitalia2.bb
-				enigma2-plugin-extensions-multiquickbutton-vu.bb
-				enigma2-plugin-extensions-newsreader.bb
-				enigma2-plugin-extensions-oggisport.bb
-				enigma2-plugin-extensions-oroscopoitalia.bb
-				enigma2-plugin-extensions-remotecontrolchannel.bb
-				enigma2-plugin-extensions-shootyourscreen.bb
-				enigma2-plugin-extensions-simpleumount.bb
-				enigma2-plugin-extensions-snmpagent.bb
-				enigma2-plugin-extensions-streaminterface.bb
-				enigma2-plugin-extensions-wakeonlan.bb
-				enigma2-plugin-systemplugins-autoshutdown.bb
-				enigma2-plugin-systemplugins-satscan.bb
+				enigma2-plugin-extensions-antilogo \
+				enigma2-plugin-extensions-bhtunerserver \
+				enigma2-plugin-extensions-bitrate \
+				enigma2-plugin-extensions-buienradar \
+				enigma2-plugin-extensions-changerootpassword \
+				enigma2-plugin-extensions-foreca \
+				enigma2-plugin-extensions-meteoitalia2 \
+				enigma2-plugin-extensions-multiquickbutton-vu \
+				enigma2-plugin-extensions-newsreader \
+				enigma2-plugin-extensions-oggisport \
+				enigma2-plugin-extensions-oroscopoitalia \
+				enigma2-plugin-extensions-remotecontrolchannel \
+				enigma2-plugin-extensions-shootyourscreen \
+				enigma2-plugin-extensions-simpleumount \
+				enigma2-plugin-extensions-snmpagent \
+				enigma2-plugin-extensions-streaminterface \
+				enigma2-plugin-extensions-wakeonlan \
+				enigma2-plugin-systemplugins-autoshutdown \
+#				enigma2-plugin-systemplugins-satscan \
 				"
 
 IMAGE_INSTALL += " \
