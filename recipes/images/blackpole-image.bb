@@ -89,6 +89,28 @@ ENIGMA2_OPTIONAL = " \
 				pcsc-lite \
 				"
 
+ENIGMA2_OPEN_PLUGINS = " \
+				enigma2-plugin-extensions-antilogo.bb
+				enigma2-plugin-extensions-bhtunerserver.bb
+				enigma2-plugin-extensions-bitrate.bb
+				enigma2-plugin-extensions-buienradar.bb
+				enigma2-plugin-extensions-changerootpassword.bb
+				enigma2-plugin-extensions-foreca.bb
+				enigma2-plugin-extensions-meteoitalia2.bb
+				enigma2-plugin-extensions-multiquickbutton-vu.bb
+				enigma2-plugin-extensions-newsreader.bb
+				enigma2-plugin-extensions-oggisport.bb
+				enigma2-plugin-extensions-oroscopoitalia.bb
+				enigma2-plugin-extensions-remotecontrolchannel.bb
+				enigma2-plugin-extensions-shootyourscreen.bb
+				enigma2-plugin-extensions-simpleumount.bb
+				enigma2-plugin-extensions-snmpagent.bb
+				enigma2-plugin-extensions-streaminterface.bb
+				enigma2-plugin-extensions-wakeonlan.bb
+				enigma2-plugin-systemplugins-autoshutdown.bb
+				enigma2-plugin-systemplugins-satscan.bb
+				"
+
 IMAGE_INSTALL += " \
 				enigma2 \
 				${ENIGMA2_PLUGINS} \
@@ -103,6 +125,7 @@ IMAGE_INSTALL += " \
 
 OPTIONAL_PACKAGES += " \
 			${ENIGMA2_OPTIONAL} \
+			${ENIGMA2_OPEN_PLUGINS} \
 			"
 
 export IMAGE_BASENAME = "blackpole"
