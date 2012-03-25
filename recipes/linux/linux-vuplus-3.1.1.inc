@@ -13,6 +13,8 @@ SRC_URI += "http://archive.vuplus.com/download/kernel/linux-${KV}_${SRCREV}.tar.
 	file://vuplus-kernel-makefiles.patch \
 	file://dvb-usb-a867.patch \
 	file://dvb-usb-af9035.patch \
+	file://wlan-rtlwifi.patch \
+	file://wlan-rtl8712.patch \
 	file://fix_cpu_proc.patch;striplevel=1 \
 	file://iosched-slice_idle-1.patch \
         file://${MACHINE}_defconfig \
