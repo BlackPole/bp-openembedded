@@ -11,6 +11,8 @@ RDEPENDS_kernel-image = "mtd-minimal-nand-utils"
 
 SRC_URI += "http://archive.vuplus.com/download/kernel/linux-${KV}_${SRCREV}.tar.bz2 \
 	file://vuplus-kernel-makefiles.patch \
+	file://dvb-as102.patch \
+	file://dvb-usb-rtl2832.patch \
 	file://dvb-usb-a867.patch \
 	file://dvb-usb-af9035.patch \
 	file://wlan-rtlwifi.patch \
