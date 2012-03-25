@@ -38,6 +38,8 @@ RDEPENDS_${PN} = " \
         ${DVBPROVIDER}-module-dvb-usb-vp7045 \
 	${DVBPROVIDER}-module-dvb-usb-af9035 \
 	${DVBPROVIDER}-module-dvb-usb-a867 \
+	${DVBPROVIDER}-module-dvb-usb-rtl2832 \
+	${DVBPROVIDER}-module-dvb-as102 \
         "
 
 PV = "1.1"
