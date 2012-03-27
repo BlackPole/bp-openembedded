@@ -2,14 +2,14 @@ DESCRIPTION = "driver for Realtek USB wireless devices"
 SECTION = "kernel/modules"
 LICENSE = "GPLv2"
 
-RCONFLICTS_${PN} = "kernel-module-rtl8192cu"
-RREPLACES_${PN} = "kernel-module-rtl8192cu"
+#RCONFLICTS_${PN} = "kernel-module-rtl8192cu"
+#RREPLACES_${PN} = "kernel-module-rtl8192cu"
 
 inherit module 
 
 SRC_URI = " \
 	http://sources.vuplus-community.net/rtl8188C_8192C_8192D_usb_linux_v3.3.0_2971.20111128.tar.gz \
-	file://makefile.patch \
+	file://rtl8192cu_3.3.0.2971.20111128/makefile.patch \
 "	
 
 S = "${WORKDIR}/rtl8188C_8192C_8192D_usb_linux_v3.3.0_2971.20111128"
