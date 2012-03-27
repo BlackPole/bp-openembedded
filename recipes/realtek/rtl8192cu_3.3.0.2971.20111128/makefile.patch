@@ -1,0 +1,26 @@
+diff --git a/Makefile b/Makefile
+index b3ccaf2..9e44425 100755
+--- a/Makefile
++++ b/Makefile
+@@ -39,7 +39,7 @@ CONFIG_PLATFORM_ANDROID_X86 = n
+ CONFIG_PLATFORM_ARM_S3C2K4 = n
+ CONFIG_PLATFORM_ARM_PXA2XX = n
+ CONFIG_PLATFORM_ARM_S3C6K4 = n
+-CONFIG_PLATFORM_MIPS_RMI = n
++CONFIG_PLATFORM_MIPS_RMI = y
+ CONFIG_PLATFORM_RTD2880B = n
+ CONFIG_PLATFORM_MIPS_AR9132 = n
+ CONFIG_PLATFORM_RTK_DMP = n
+@@ -288,9 +288,9 @@ endif
+ ifeq ($(CONFIG_PLATFORM_MIPS_RMI), y)
+ EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
+ ARCH:=mips
+-CROSS_COMPILE:=mipsisa32r2-uclibc-
+-KVER:= 
+-KSRC:= /root/work/kernel_realtek
++#CROSS_COMPILE:=mipsisa32r2-uclibc-
++#KVER:= 
++#KSRC:= /root/work/kernel_realtek
+ endif
+ 
+ ifeq ($(CONFIG_PLATFORM_MIPS_PLM), y)
