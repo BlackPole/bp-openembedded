@@ -127,6 +127,7 @@ EXTRA_OECONF = "\
         ${@base_contains("MACHINE_FEATURES", "graphiclcd", "--with-graphiclcd" , "", d)} \
         ${@base_contains("MACHINE_FEATURES", "fullgraphiclcd", "--with-fullgraphiclcd" , "", d)} \
         ${@base_contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
+	${@base_contains("MACHINE_FEATURES", "enable-rc-kbd", "--with-remote-keyboard" , "", d)} \
 	BUILD_SYS=${BUILD_SYS} \
 	HOST_SYS=${HOST_SYS} \
 	STAGING_INCDIR=${STAGING_INCDIR} \
