@@ -91,7 +91,7 @@ PR = "r31"
 # SRC_URI = "git://${HOME}/pli/enigma2;protocol=file"
 
 
-SRC_URI = "git://blackgit.vuplus-community.net/git/blackpole-core/bp_dvbapp;protocol=http"
+SRC_URI = "git://github.com/BlackPole/bp-dvbapp.git;protocol=git"
 
 SRC_URI_append_vuultimo = " \
            file://analog.ttf \
