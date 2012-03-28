@@ -114,7 +114,6 @@ ENIGMA2_OPEN_PLUGINS = " \
 IMAGE_INSTALL += " \
 				enigma2 \
 				${ENIGMA2_PLUGINS} \
-				${ENIGMA2_MACHINE_PLUGINS} \
 				aio-grab \
 				tuxbox-common \
 				libavahi-client \
