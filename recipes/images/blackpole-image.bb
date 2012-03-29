@@ -61,6 +61,7 @@ ENIGMA2_PLUGINS = " \
 				${@base_contains("MACHINE_FEATURES", "dvbapi5", "usbtunerhelper" , "", d)} \
 #				${@base_contains("MACHINE_FEATURES", "3dtv", "enigma2-plugin-systemplugins-osd3dsetup" , "", d)} \
 				${@base_contains("MACHINE_FEATURES", "wifi", "enigma2-plugin-systemplugins-wirelesslan", "", d)} \
+				${@base_contains("MACHINE_FEATURES", "satscan", "enigma2-plugin-systemplugins-satscan" , "", d)} \
 				enigma2-plugin-extensions-vuplusevent \
   				enigma2-plugin-systemplugins-ui3dsetup \
   				enigma2-plugin-systemplugins-uipositionsetup \
@@ -114,6 +115,7 @@ ENIGMA2_OPEN_PLUGINS = " \
 IMAGE_INSTALL += " \
 				enigma2 \
 				${ENIGMA2_PLUGINS} \
+				${ENIGMA2_MACHINE_PLUGINS} \
 				aio-grab \
 				tuxbox-common \
 				libavahi-client \
