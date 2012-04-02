@@ -88,6 +88,7 @@ ENIGMA2_OPTIONAL = " \
 				minidlna \
 				nano \
 				pcsc-lite \
+				blackpole-settings-e2-meta \
 				"
 
 ENIGMA2_OPEN_PLUGINS = " \
