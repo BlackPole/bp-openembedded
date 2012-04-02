@@ -94,10 +94,10 @@ index 4bac13d..9531557 100644
  # due to tuner-xc3028
  EXTRA_CFLAGS += -Idrivers/media/common/tuners
 diff --git a/drivers/media/dvb/dvb-usb/dvb-usb-ids.h b/drivers/media/dvb/dvb-usb/dvb-usb-ids.h
-index 2a79b8f..3777aec 100644
+index 2a79b8f..77612d8 100644
 --- a/drivers/media/dvb/dvb-usb/dvb-usb-ids.h
 +++ b/drivers/media/dvb/dvb-usb/dvb-usb-ids.h
-@@ -323,4 +323,24 @@
+@@ -323,4 +323,23 @@
  #define USB_PID_TECHNISAT_USB2_HDCI_V2			0x0002
  #define USB_PID_TECHNISAT_AIRSTAR_TELESTICK_2		0x0004
  #define USB_PID_TECHNISAT_USB2_DVB_S2			0x0500
@@ -106,17 +106,16 @@ index 2a79b8f..3777aec 100644
 +#define USB_PID_AFATECH_AF9035_1002                    0x1002
 +#define USB_PID_AFATECH_AF9035_1003                    0x1003
 +#define USB_PID_AFATECH_AF9035_9035                    0x9035
++#define USB_PID_AVERMEDIA_A333_A                       0xa333
++#define USB_PID_AVERMEDIA_A333_B                       0xb867
++#define USB_PID_AVERMEDIA_A867_A                       0x1867
++#define USB_PID_AVERMEDIA_A867_B                       0x0337
++#define USB_PID_AVERMEDIA_A867_C                       0xa867
++#define USB_PID_AVERMEDIA_A867_D                       0x0867
++#define USB_PID_AVERMEDIA_A867_E                       0xF337
 +#define USB_PID_AVERMEDIA_A825                         0x0825
 +#define USB_PID_AVERMEDIA_A835                         0xa835
 +#define USB_PID_AVERMEDIA_B835                         0xb835
-+#define USB_PID_AVERMEDIA_A333                         0xa333
-+#define USB_PID_AVERMEDIA_B867                         0xb867
-+#define USB_PID_AVERMEDIA_1867                         0x1867
-+#define USB_PID_AVERMEDIA_0337                         0x0337
-+#define USB_PID_AVERMEDIA_A867                         0xa867
-+#define USB_PID_AVERMEDIA_0867                         0x0867
-+#define USB_PID_AVERMEDIA_F337                         0xf337
-+#define USB_PID_AVERMEDIA_3867                         0x3867
 +#define USB_PID_TERRATEC_CINERGY_T_STICK               0x0093
 +#define USB_PID_TERRATEC_CINERGY_T_STICK_2             0x00aa
 +#define USB_PID_WINFAST_DTV_DONGLE_MINI                0x6a03
