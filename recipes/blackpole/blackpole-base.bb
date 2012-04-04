@@ -4,7 +4,7 @@ MAINTAINER = "Meo <lupomeo@gmail.com>"
 
 SRC_URI = "file://Ncam_Ci.sh file://StartBhCam file://Delete_all_Crashlogs.sh file://Ifconfig.sh file://Netstat.sh file://Uptime.sh"
 
-PR = "r0"
+PR = "r1"
 
 FILES_${PN} = "/"
 
