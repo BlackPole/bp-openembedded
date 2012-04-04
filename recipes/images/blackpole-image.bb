@@ -110,7 +110,6 @@ ENIGMA2_OPEN_PLUGINS = " \
 				enigma2-plugin-extensions-streaminterface \
 				enigma2-plugin-extensions-wakeonlan \
 				enigma2-plugin-systemplugins-autoshutdown \
-#				enigma2-plugin-systemplugins-satscan \
 				"
 
 IMAGE_INSTALL += " \
