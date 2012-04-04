@@ -4,9 +4,6 @@ LICENSE = "GPL"
 PR = "r0"
 
 SRC_URI = "http://sources.vuplus-community.net/vsftpd-${PV}.tar.gz \
-#           file://makefile.patch \
-#           file://nopam.patch \
-#           file://syscall.patch \
            file://init \
            file://vsftpd.conf"
 
