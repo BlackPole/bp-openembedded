@@ -16,6 +16,12 @@ do_compile() {
 
 do_install() {
 	
+	mkdir -p ${D}/media/downloads
+	mkdir -p ${D}/media/music
+	mkdir -p ${D}/media/personal
+	mkdir -p ${D}/media/photo
+	mkdir -p ${D}/media/video
+
 	mkdir -p ${D}/usr/camscript
 	mkdir -p ${D}/usr/script
 
