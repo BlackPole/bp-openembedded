@@ -89,6 +89,7 @@ ENIGMA2_OPTIONAL = " \
 				nano \
 				pcsc-lite \
 				blackpole-settings-e2-meta \
+				task-rossi2000 \
 				"
 
 ENIGMA2_OPEN_PLUGINS = " \
