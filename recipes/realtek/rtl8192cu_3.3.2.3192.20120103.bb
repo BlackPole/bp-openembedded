@@ -10,11 +10,12 @@ inherit module
 SRC_URI = " \
 	http://sources.vuplus-community.net/rtl8188C_8192C_8192D_usb_linux_v3.3.2_3192.20120103.tar.gz \
 	file://rtl8192cu_3.3.2.3192.20120103/makefile.patch \
+	file://rtl8192cu/additional_productids.patch \
 "	
 
 S = "${WORKDIR}/rtl8188C_8192C_8192D_usb_linux_v3.3.2_3192.20120103"
 
-MACHINE_KERNEL_PR_append = ".5"
+MACHINE_KERNEL_PR_append = ".6"
 
 do_compile () {
 	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS CC LD CPP
