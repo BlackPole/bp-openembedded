@@ -66,6 +66,7 @@ do_install() {
 
 FILES_enigma2-plugin-systemplugins-manualfancontrol = "/usr/lib/enigma2/python/Plugins/SystemPlugins/ManualFancontrol"
 FILES_enigma2-plugin-systemplugins-fpgaupgrade = "/usr/lib/enigma2/python/Plugins/SystemPlugins/FPGAUpgrade"
+FILES_enigma2-plugin-systemplugins-blindscan = "/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan"
 FILES_enigma2-plugin-systemplugins-firmwareupgrade = "/usr/lib/enigma2/python/Plugins/SystemPlugins/FirmwareUpgrade"
 FILES_enigma2-plugin-systemplugins-remotecontrolcode = "/usr/lib/enigma2/python/Plugins/SystemPlugins/RemoteControlCode"
 FILES_enigma2-plugin-systemplugins-ledbrightnesssetup = "/usr/lib/enigma2/python/Plugins/SystemPlugins/LEDBrightnessSetup"
@@ -77,6 +78,7 @@ FILES_enigma2-plugin-extensions-vuplusevent = "/usr/lib/enigma2/python/Plugins//
 PACKAGES = "\
 	enigma2-plugin-systemplugins-manualfancontrol \
 	enigma2-plugin-systemplugins-fpgaupgrade \
+	enigma2-plugin-systemplugins-blindscan \
 	enigma2-plugin-systemplugins-firmwareupgrade \
 	enigma2-plugin-systemplugins-remotecontrolcode \
 	enigma2-plugin-systemplugins-ledbrightnesssetup \
