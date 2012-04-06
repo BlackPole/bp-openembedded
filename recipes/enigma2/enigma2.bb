@@ -85,7 +85,7 @@ inherit gitpkgv
 
 PV = "2.7+git${SRCPV}"
 PKGV = "2.7+git${GITPKGV}"
-PR = "r31"
+PR = "r31a"
 
 #SRC_URI = "git://openpli.git.sourceforge.net/gitroot/openpli/enigma2;protocol=git"
 # SRC_URI = "git://${HOME}/pli/enigma2;protocol=file"
