@@ -85,10 +85,10 @@ inherit gitpkgv
 
 PV = "2.7+git${SRCPV}"
 PKGV = "2.7+git${GITPKGV}"
-PR = "r31a"
+PR = "r32"
 
-#SRC_URI = "git://openpli.git.sourceforge.net/gitroot/openpli/enigma2;protocol=git"
-# SRC_URI = "git://${HOME}/pli/enigma2;protocol=file"
+
+
 
 
 SRC_URI = "git://github.com/BlackPole/bp-dvbapp.git;protocol=git"
@@ -166,7 +166,7 @@ FILES_${PN}-src = "\
 RADIOMVI = "${@base_contains("MACHINE_FEATURES", "hdtv", "radio-hd.mvi" , "radio-sd.mvi", d)}"
 
 RCONFLICTS_${PN} = "dreambox-keymaps"
-RREPLACES_${PN} = "dreambox-keymaps"
+RREPLACES_${PN} = "dreambox-keymaps usbtunerhelper"
 
 do_openpli_preinstall() {
 	ln -f ${S}/data/${RADIOMVI} ${S}/data/radio.mvi
