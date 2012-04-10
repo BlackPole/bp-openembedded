@@ -11,10 +11,10 @@ RDEPENDS_kernel-image = "mtd-minimal-nand-utils"
 
 SRC_URI += "http://archive.vuplus.com/download/kernel/linux-${KV}_${SRCREV}.tar.bz2 \
 	file://vuplus-kernel-makefiles.patch \
-	file://dvb-as102.patch \
-	file://dvb-usb-rtl2832.patch \
-	file://dvb-usb-a867.patch \
-	file://dvb-usb-af9035.patch \
+	file://vu-dvb-as102.patch \
+	file://vu-dvb-usb-rtl2832.patch \
+	file://vu-dvb-usb-a867.patch \
+	file://vu-dvb-usb-af9035.patch \
 	file://wlan-rtl8712.patch \
 	file://fix_cpu_proc.patch;striplevel=1 \
 	file://iosched-slice_idle-1.patch \
