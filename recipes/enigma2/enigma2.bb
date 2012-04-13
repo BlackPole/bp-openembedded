@@ -85,7 +85,7 @@ inherit gitpkgv
 
 PV = "2.7+git${SRCPV}"
 PKGV = "2.7+git${GITPKGV}"
-PR = "r34c"
+PR = "r34d"
 
 
 
