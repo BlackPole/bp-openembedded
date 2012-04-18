@@ -66,6 +66,8 @@ ENIGMA2_PLUGINS = " \
 				enigma2-plugin-extensions-vuplusevent \
   				enigma2-plugin-systemplugins-ui3dsetup \
   				enigma2-plugin-systemplugins-uipositionsetup \
+				minidlna \
+				djmount \
 				"
 
 DEPENDS += "enigma2 enigma2-plugins enigma2-pliplugins"
@@ -86,7 +88,6 @@ ENIGMA2_OPTIONAL = " \
 				dvbsnoop \
 				mtd-utils \
 				dvdfs \
-				minidlna \
 				nano \
 				pcsc-lite \
 				blackpole-settings-e2-meta \

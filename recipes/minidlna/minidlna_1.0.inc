@@ -15,7 +15,7 @@ CONFFILES_${PN} = "${sysconfdir}/minidlna.conf"
 INITSCRIPT_NAME = "minidlna"
 INITSCRIPT_PARAMS = "defaults 90 10"
 
-inherit update-rc.d
+# inherit update-rc.d
 
 CFLAGS_prepend = "-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -I${STAGING_INCDIR}/ffmpeg "
 

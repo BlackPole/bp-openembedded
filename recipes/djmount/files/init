@@ -15,14 +15,14 @@ start)
 	if ! test -d $MOUNTPOINT; then
 		mkdir $MOUNTPOINT
 	fi
-	modprobe -q fuse
+#	modprobe fuse
 	start-stop-daemon -S -b -x $DAEMON -- $ARGS
 	echo "done."
 	;;
 stop)
 	echo -n "* stopping $DESC: $NAME... "
 	start-stop-daemon -K -x $DAEMON
-	modprobe -r -q fuse
+	rmmod fuse
 	echo "done."
 	;;
 restart)
